@@ -1,0 +1,7 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#f3f4f6" />
+  <rect x="80" y="80" width="1040" height="470" fill="#ffffff" stroke="#d1d5db" stroke-width="2"/>
+  <text x="120" y="260" fill="#111827" font-family="'IBM Plex Sans', sans-serif" font-size="52" font-weight="600">Wonbee Park</text>
+  <text x="120" y="330" fill="#374151" font-family="'IBM Plex Mono', monospace" font-size="28">Engineering Portfolio</text>
+  <text x="120" y="390" fill="#4b5563" font-family="'IBM Plex Sans', sans-serif" font-size="24">Propulsion • Control • Electronics • Systems</text>
+</svg>
