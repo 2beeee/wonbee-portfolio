@@ -72,3 +72,8 @@ Update `data/site.ts`:
   - `public/og-image.svg`
 - Confirm `metadataBase` in `app/layout.tsx` remains `https://wonbee.kr`.
 - In Vercel, add domain `wonbee.kr` and `www.wonbee.kr` and configure DNS records at your registrar.
+
+## 7) Maintenance Record
+
+For full process history and future upkeep steps, see:
+- `docs/MAINTENANCE_RUNBOOK.md`
