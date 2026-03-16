@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { siteConfig } from "@/data/site";
 
 export function SiteFooter() {
@@ -9,7 +10,24 @@ export function SiteFooter() {
         <p className="font-medium text-neutral-800">
           {siteConfig.name} | {siteConfig.role}
         </p>
-        <p>Portfolio focused on propulsion execution, practical build capability, and measured engineering progression.</p>
+        <p>Curated engineering portfolio focused on propulsion execution, practical build capability, and clear communication.</p>
+        <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-600">
+          <Link href="/projects" className="underline underline-offset-4 hover:text-neutral-900">
+            Liquid Propulsion
+          </Link>
+          <Link href="/tedx" className="underline underline-offset-4 hover:text-neutral-900">
+            TEDx
+          </Link>
+          <Link href="/awards" className="underline underline-offset-4 hover:text-neutral-900">
+            Samsung Award
+          </Link>
+          <Link href="/skills" className="underline underline-offset-4 hover:text-neutral-900">
+            Skills
+          </Link>
+          <Link href="/recap" className="underline underline-offset-4 hover:text-neutral-900">
+            Recap
+          </Link>
+        </div>
         <div className="flex flex-wrap items-center gap-4 text-neutral-700">
           <a className="underline-offset-4 hover:text-neutral-900 hover:underline" href={siteConfig.links.email}>
             Email

@@ -71,7 +71,6 @@ export default function RootLayout({
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="font-[var(--font-sans)] text-neutral-900 antialiased">
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top_right,rgba(148,163,184,0.2),transparent_55%)]" />
           <SiteHeader />
           <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">{children}</main>
           <SiteFooter />

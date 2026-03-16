@@ -41,6 +41,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   }
 
   const category = getProjectCategory(project.categoryId);
+  const isSeventyNewtonProject = project.slug === "70n-gox-ethanol-liquid-rocket";
   const related = getProjectsByCategory(project.categoryId)
     .filter((candidate) => candidate.slug !== project.slug)
     .slice(0, 3);
@@ -48,6 +49,20 @@ export default async function ProjectDetailPage({ params }: PageProps) {
   return (
     <article className="max-w-5xl space-y-8">
       <ReturnLink href="/projects" label="Back to Projects" />
+
+      {isSeventyNewtonProject ? (
+        <section className="overflow-hidden rounded-2xl border border-neutral-200 bg-neutral-950">
+          <video
+            className="h-full w-full object-cover"
+            src="/assets/videos/rocket-70n/rocket-70n-showoff.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="metadata"
+          />
+        </section>
+      ) : null}
 
       <header className="space-y-4 rounded-2xl border border-neutral-200 bg-white p-6">
         <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.18em] text-neutral-500">{category.title}</p>

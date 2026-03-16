@@ -32,7 +32,15 @@ export function MediaFrame({ media, compact = false, priority = false, className
             priority={priority}
           />
         ) : (
-          <video className="h-full w-full object-contain bg-neutral-900" controls preload="metadata" playsInline>
+          <video
+            className="h-full w-full object-contain bg-neutral-900"
+            controls={!media.autoplay}
+            autoPlay={media.autoplay}
+            loop={media.autoplay}
+            muted={media.autoplay}
+            preload="metadata"
+            playsInline
+          >
             <source src={media.src} type="video/mp4" />
             Your browser does not support the video tag.
           </video>

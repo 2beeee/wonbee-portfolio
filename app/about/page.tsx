@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ReturnLink } from "@/components/return-link";
+import { personalMoments } from "@/data/showcase";
 import { siteConfig } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -57,6 +59,23 @@ export default function AboutPage() {
           </a>
           , which reinforced the value of combining deep analysis with build/test practicality.
         </p>
+        <div className="relative mt-2 aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200">
+          <Image src={personalMoments[0].src} alt={personalMoments[0].alt} fill sizes="(max-width: 1024px) 100vw, 560px" className="object-cover" />
+        </div>
+      </section>
+
+      <section className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-6">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-neutral-700">Small Human Notes</h2>
+        <p className="text-sm leading-6 text-neutral-600">
+          A few quiet childhood snapshots are included intentionally as context for how practical curiosity started early.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-3">
+          {personalMoments.slice(2, 5).map((item) => (
+            <div key={item.src} className="relative aspect-[3/4] overflow-hidden rounded-lg border border-neutral-200">
+              <Image src={item.src} alt={item.alt} fill sizes="(max-width: 640px) 100vw, 240px" className="object-cover" />
+            </div>
+          ))}
+        </div>
       </section>
     </article>
   );
