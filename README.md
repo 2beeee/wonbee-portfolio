@@ -1,4 +1,4 @@
-﻿# Wonbee Portfolio (wonbee.kr)
+# Wonbee Portfolio (wonbee.kr)
 
 A minimal, technical personal engineering portfolio built with Next.js (App Router), TypeScript, and Tailwind CSS.
 
@@ -68,7 +68,10 @@ Update `data/site.ts`:
 - Update resume section details in `app/resume/page.tsx`.
 - Replace or refine placeholder project copy in `data/projects.ts`.
 - Optionally replace:
-  - `app/icon.svg`
+  - `app/icon.png` (Next.js app icon source)
+  - `public/favicon.ico` + `public/favicon-16x16.png` + `public/favicon-32x32.png`
+  - `public/apple-touch-icon.png` + `public/android-chrome-192x192.png` + `public/android-chrome-512x512.png`
+  - `public/site.webmanifest`
   - `public/og-image.svg`
 - Confirm `metadataBase` in `app/layout.tsx` remains `https://wonbee.kr`.
 - In Vercel, add domain `wonbee.kr` and `www.wonbee.kr` and configure DNS records at your registrar.

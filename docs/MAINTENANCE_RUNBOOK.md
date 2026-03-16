@@ -1,4 +1,4 @@
-﻿# Maintenance Runbook - wonbee.kr
+# Maintenance Runbook - wonbee.kr
 
 Last updated: 2026-03-16 (Asia/Seoul)
 
@@ -19,7 +19,8 @@ Last updated: 2026-03-16 (Asia/Seoul)
   - `app/about/page.tsx`
   - `app/resume/page.tsx`
   - `app/contact/page.tsx`
-- Favicon: `app/icon.svg`
+- Favicon assets: `app/icon.png`, `public/favicon.ico`, `public/favicon-16x16.png`, `public/favicon-32x32.png`, `public/apple-touch-icon.png`, `public/android-chrome-192x192.png`, `public/android-chrome-512x512.png`, `public/site.webmanifest`
+- Favicon metadata wiring: `app/layout.tsx`
 - Open Graph image: `public/og-image.svg`
 
 ## 3) Local Development Workflow
@@ -121,7 +122,7 @@ ipconfig /flushdns
 ## 9) Recommended Next Improvements
 
 - Replace placeholder personal/contact/project text
-- Finalize favicon/brand mark (`app/icon.svg`)
+- Refresh favicon set from source image when branding changes (see section 11)
 - Replace OG image (`public/og-image.svg`)
 - Add short changelog section in this document for every production update
 
@@ -131,3 +132,21 @@ ipconfig /flushdns
 - 2026-03-13: Upgraded Next.js to patched version due Vercel security block
 - 2026-03-13: DNS corrected for `www` CNAME and root A
 - 2026-03-16: Runbook created for future maintenance
+- 2026-03-16: Favicon set generated from `D:\wonbe\Downloads\favicon1.png` and wired via `app/layout.tsx` + `public/site.webmanifest`
+
+## 11) Favicon Source and Update Procedure
+
+- Current source image used: `D:\wonbe\Downloads\favicon1.png`
+- Output location: `app/` and `public/`
+- Generated files:
+  - `app/icon.png` (Next.js app icon)
+  - `favicon.ico`
+  - `favicon-16x16.png`
+  - `favicon-32x32.png`
+  - `apple-touch-icon.png`
+  - `android-chrome-192x192.png`
+  - `android-chrome-512x512.png`
+  - `site.webmanifest`
+- Metadata wiring file: `app/layout.tsx` (`metadata.icons` + `metadata.manifest`)
+- Regeneration note: create all sizes from the same source to keep favicon consistency across browsers/devices.
+- 2026-03-16: Replaced legacy `app/icon.svg` with `app/icon.png` to prevent old icon from overriding favicon files.
