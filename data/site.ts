@@ -1,14 +1,34 @@
-﻿export const siteConfig = {
+export const siteConfig = {
   name: "Wonbee Park",
-  role: "Engineering Portfolio",
+  role: "Propulsion and Systems Engineering",
   intro:
-    "I design, build, and test engineering systems across propulsion, controls, electronics, and integrated prototypes.",
-  keywords: ["Propulsion", "Control", "Electronics", "Systems Engineering", "Build/Test"],
+    "I build engineering systems that move from concept to test article, and from test article to decisions grounded in measured data.",
+  positioning:
+    "My trajectory has grown from hands-on making into integrated propulsion, controls, and hardware programs where execution quality matters as much as theory.",
+  keywords: ["Propulsion", "Design-Build-Test", "Control", "Instrumentation", "Fabrication"],
   location: "Seoul, South Korea",
+  distinctions: [
+    {
+      title: "Samsung Humantech Paper Awards",
+      detail: "32nd Gold Prize",
+      year: "2025"
+    }
+  ],
   links: {
-    github: "https://github.com/your-github",
-    linkedin: "https://www.linkedin.com/in/your-linkedin",
-    email: "mailto:your.email@example.com",
-    resumePdf: "#"
+    email: "mailto:wonbeepark@gmail.com",
+    linkedin: "https://www.linkedin.com/in/wonbee-park-859711329",
+    instagram: "https://instagram.com/2bee09",
+    phone: "tel:+821027481783",
+    tedxTalk: "https://www.youtube.com/watch?v=_ugRmLdd2nQ&t=4770s",
+    resumePdf: ""
+  },
+  documents: {
+    vtvlReport: "/assets/docs/vtvl-reference-report.pdf",
+    humantechPaper: "/assets/docs/samsung-humantech-gold-paper.docx"
+  },
+  contact: {
+    email: "wonbeepark@gmail.com",
+    instagram: "@2bee09",
+    phone: "+82 10-2748-1783"
   }
 } as const;

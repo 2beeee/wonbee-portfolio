@@ -1,7 +1,22 @@
-﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f3f4f6" />
-  <rect x="80" y="80" width="1040" height="470" fill="#ffffff" stroke="#d1d5db" stroke-width="2"/>
-  <text x="120" y="260" fill="#111827" font-family="'IBM Plex Sans', sans-serif" font-size="52" font-weight="600">Wonbee Park</text>
-  <text x="120" y="330" fill="#374151" font-family="'IBM Plex Mono', monospace" font-size="28">Engineering Portfolio</text>
-  <text x="120" y="390" fill="#4b5563" font-family="'IBM Plex Sans', sans-serif" font-size="24">Propulsion • Control • Electronics • Systems</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc" />
+      <stop offset="100%" stop-color="#e2e8f0" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect x="70" y="70" width="1060" height="490" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" />
+  <text x="120" y="220" fill="#0f172a" font-family="'IBM Plex Sans', sans-serif" font-size="52" font-weight="600">
+    Wonbee Park
+  </text>
+  <text x="120" y="288" fill="#334155" font-family="'IBM Plex Mono', monospace" font-size="28">
+    Propulsion and Systems Engineering Portfolio
+  </text>
+  <text x="120" y="355" fill="#475569" font-family="'IBM Plex Sans', sans-serif" font-size="25">
+    Samsung Humantech Paper Awards (32nd) Gold Prize
+  </text>
+  <text x="120" y="410" fill="#64748b" font-family="'IBM Plex Sans', sans-serif" font-size="22">
+    Propulsion / VTVL Research / Fabrication / Public Technical Communication
+  </text>
 </svg>

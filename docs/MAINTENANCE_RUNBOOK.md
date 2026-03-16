@@ -6,7 +6,7 @@ Last updated: 2026-03-16 (Asia/Seoul)
 
 - Site type: static-first personal engineering portfolio
 - Stack: Next.js App Router + TypeScript + Tailwind CSS
-- Repo: `https://github.com/2beeee/wonbee-portfolio`
+- Repo: local portfolio workspace (`D:\wonbe\바탕화면\wonbee-portfolio`)
 - Production host: Vercel
 - Domains: `wonbee.kr`, `www.wonbee.kr`
 
@@ -121,7 +121,7 @@ ipconfig /flushdns
 
 ## 9) Recommended Next Improvements
 
-- Replace placeholder personal/contact/project text
+- Expand project entries with deeper technical artifacts (drawings, test plots, and lessons learned)
 - Refresh favicon set from source image when branding changes (see section 11)
 - Replace OG image (`public/og-image.svg`)
 - Add short changelog section in this document for every production update

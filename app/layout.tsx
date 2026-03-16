@@ -18,18 +18,21 @@ const mono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://wonbee.kr"),
+  alternates: {
+    canonical: "https://wonbee.kr"
+  },
   title: {
-    default: "Wonbee Park | Engineering Portfolio",
+    default: "Wonbee Park | Propulsion and Systems Engineering",
     template: "%s | Wonbee Park"
   },
   description:
-    "Engineering portfolio of Wonbee Park: propulsion, control, electronics, and systems-focused build/test projects.",
+    "Portfolio of Wonbee Park: propulsion development, research execution, fabrication capability, and design-build-test engineering growth.",
   openGraph: {
-    title: "Wonbee Park | Engineering Portfolio",
+    title: "Wonbee Park | Propulsion and Systems Engineering",
     description:
-      "Engineering portfolio focused on propulsion, controls, electronics, and systems engineering.",
+      "Propulsion projects, VTVL research, Samsung Humantech Gold distinction, fabrication work, and public technical communication.",
     url: "https://wonbee.kr",
-    siteName: "Wonbee Park Portfolio",
+    siteName: "Wonbee Park",
     type: "website",
     images: [
       {
@@ -39,6 +42,13 @@ export const metadata: Metadata = {
         alt: "Wonbee Park engineering portfolio"
       }
     ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wonbee Park | Propulsion and Systems Engineering",
+    description:
+      "Engineering portfolio featuring propulsion progression, hands-on build capability, and Samsung Humantech Gold work.",
+    images: ["/og-image.svg"]
   },
   manifest: "/site.webmanifest",
   icons: {
@@ -60,9 +70,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="font-[var(--font-sans)] text-neutral-900 antialiased">
-        <div className="flex min-h-screen flex-col">
+        <div className="relative flex min-h-screen flex-col overflow-x-hidden">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top_right,rgba(148,163,184,0.2),transparent_55%)]" />
           <SiteHeader />
-          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-10 sm:px-6 lg:px-8">{children}</main>
+          <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">{children}</main>
           <SiteFooter />
         </div>
       </body>
