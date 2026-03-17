@@ -49,12 +49,6 @@ export default function ContactPage() {
               {siteConfig.contact.instagram}
             </a>
           </li>
-          <li>
-            <span className="font-medium text-neutral-900">Phone:</span>{" "}
-            <a className="underline underline-offset-4 hover:text-neutral-900" href={siteConfig.links.phone}>
-              {siteConfig.contact.phone}
-            </a>
-          </li>
         </ul>
       </section>
 

@@ -18,7 +18,6 @@ export const siteConfig = {
     email: "mailto:wonbeepark@gmail.com",
     linkedin: "https://www.linkedin.com/in/wonbee-park-859711329",
     instagram: "https://instagram.com/2bee09",
-    phone: "tel:+821027481783",
     tedxTalk: "https://www.youtube.com/watch?v=_ugRmLdd2nQ&t=4770s",
     resumePdf: ""
   },
@@ -29,6 +28,5 @@ export const siteConfig = {
   contact: {
     email: "wonbeepark@gmail.com",
     instagram: "@2bee09",
-    phone: "+82 10-2748-1783"
   }
 } as const;

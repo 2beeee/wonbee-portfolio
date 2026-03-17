@@ -48,9 +48,6 @@ export function SiteFooter() {
           >
             Instagram
           </a>
-          <a className="underline-offset-4 hover:text-neutral-900 hover:underline" href={siteConfig.links.phone}>
-            {siteConfig.contact.phone}
-          </a>
           <a
             className="underline-offset-4 hover:text-neutral-900 hover:underline"
             href={siteConfig.links.tedxTalk}
