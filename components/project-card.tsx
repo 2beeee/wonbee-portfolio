@@ -7,7 +7,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const cover = project.media?.[0];
 
   return (
-    <article className="group rounded-2xl border border-neutral-200 bg-white/92 p-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-neutral-400 hover:shadow-md sm:p-5">
+    <article className="group rounded-xl border border-border-dark bg-surface p-4 card-glow sm:p-5">
       {cover && cover.type === "image" ? (
         <div className="mb-4">
           <MediaFrame media={cover} compact />
@@ -16,17 +16,24 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="space-y-2">
-          <p className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.16em] text-neutral-500">{category.title}</p>
-          <h3 className="text-base font-semibold text-neutral-900">{project.title}</h3>
+          <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-combustion">
+            {category.title}
+          </p>
+          <h3 className="text-base font-semibold text-warm-white">{project.title}</h3>
         </div>
-        <span className="whitespace-nowrap text-xs text-neutral-500">{project.yearOrStatus}</span>
+        <span className="whitespace-nowrap font-mono text-[10px] text-text-muted">
+          {project.yearOrStatus}
+        </span>
       </div>
 
-      <p className="mb-3 text-sm leading-6 text-neutral-700">{project.summary}</p>
+      <p className="mb-3 text-sm leading-6 text-text-secondary">{project.summary}</p>
 
       <ul className="mb-4 flex flex-wrap gap-2" aria-label="Project tags">
         {project.tags.map((tag) => (
-          <li key={tag} className="rounded-full border border-neutral-300 px-2 py-1 text-xs text-neutral-700">
+          <li
+            key={tag}
+            className="rounded border border-border-dark px-2 py-0.5 font-mono text-[10px] text-text-muted"
+          >
             {tag}
           </li>
         ))}
@@ -34,9 +41,9 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <Link
         href={`/projects/${project.slug}`}
-        className="text-sm font-medium text-neutral-700 underline-offset-4 transition group-hover:text-neutral-900 group-hover:underline"
+        className="font-mono text-xs tracking-wider text-text-secondary transition group-hover:text-combustion"
       >
-        Open project details
+        Open details &rarr;
       </Link>
     </article>
   );

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { TopLevelSlider } from "@/components/top-level-slider";
+import Image from "next/image";
+import { Hero } from "@/components/hero";
 import { siteConfig } from "@/data/site";
 
-const topPanels = [
+const sections = [
   {
     id: "about",
     eyebrow: "About / Introduction",
@@ -51,27 +52,82 @@ const topPanels = [
 
 export default function HomePage() {
   return (
-    <div className="space-y-12">
-      <section className="animate-fade-up space-y-5">
-        <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.2em] text-neutral-500">{siteConfig.role}</p>
-        <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">{siteConfig.name}</h1>
-        <p className="max-w-3xl text-base leading-7 text-neutral-700 sm:text-lg">{siteConfig.intro}</p>
-        <p className="max-w-3xl text-sm leading-7 text-neutral-600 sm:text-base">{siteConfig.positioning}</p>
-      </section>
+    <div className="space-y-20">
+      <Hero
+        name={siteConfig.name}
+        role={siteConfig.role}
+        intro={siteConfig.intro}
+        positioning={siteConfig.positioning}
+      />
 
-      <TopLevelSlider panels={topPanels} />
+      {/* Featured sections — vertical scroll */}
+      <div className="space-y-12">
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-gradient-to-r from-combustion/40 to-transparent" />
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-muted">Featured Sections</p>
+          <div className="h-px flex-1 bg-gradient-to-l from-lox/40 to-transparent" />
+        </div>
 
-      <section className="rounded-2xl border border-neutral-200 bg-white/88 p-5">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <p className="text-sm text-neutral-700">Additional sections</p>
-          <div className="flex flex-wrap gap-3 text-sm">
-            <Link href="/skills" className="rounded-full border border-neutral-300 px-3 py-1.5 text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-900">
+        {sections.map((section, i) => (
+          <article
+            key={section.id}
+            className="scroll-animate rounded-xl border border-border-dark bg-surface p-6 sm:p-8 card-glow"
+          >
+            <div className={`grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center ${i % 2 === 1 ? "lg:direction-rtl" : ""}`}>
+              <div className={`space-y-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-combustion">
+                  {section.eyebrow}
+                </p>
+                <h2 className="text-2xl font-semibold tracking-tight text-warm-white sm:text-3xl">
+                  {section.title}
+                </h2>
+                <p className="max-w-2xl text-sm leading-7 text-text-secondary sm:text-base">
+                  {section.description}
+                </p>
+                <Link
+                  href={section.href}
+                  className="inline-flex rounded-lg border border-border-dark bg-surface-light px-6 py-3 font-mono text-sm tracking-wider text-text-secondary transition hover:border-combustion/50 hover:text-combustion"
+                >
+                  {section.cta}
+                </Link>
+              </div>
+              <div className={`overflow-hidden rounded-lg border border-border-dark ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+                <div className="relative aspect-[16/10] bg-surface-light">
+                  <Image
+                    src={section.mediaSrc}
+                    alt={section.mediaAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      {/* Additional sections */}
+      <section className="scroll-animate rounded-xl border border-border-dark bg-surface p-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
+          <p className="font-mono text-xs uppercase tracking-[0.12em] text-text-muted">Additional sections</p>
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/skills"
+              className="rounded-lg border border-border-dark px-5 py-2.5 font-mono text-sm text-text-secondary transition hover:border-combustion/50 hover:text-combustion"
+            >
               Skills
             </Link>
-            <Link href="/recap" className="rounded-full border border-neutral-300 px-3 py-1.5 text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-900">
+            <Link
+              href="/recap"
+              className="rounded-lg border border-border-dark px-5 py-2.5 font-mono text-sm text-text-secondary transition hover:border-combustion/50 hover:text-combustion"
+            >
               Recap Archive
             </Link>
-            <Link href="/contact" className="rounded-full border border-neutral-300 px-3 py-1.5 text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-900">
+            <Link
+              href="/contact"
+              className="rounded-lg border border-border-dark px-5 py-2.5 font-mono text-sm text-text-secondary transition hover:border-lox/50 hover:text-lox"
+            >
               Contact
             </Link>
           </div>

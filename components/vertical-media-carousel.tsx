@@ -16,18 +16,28 @@ export function VerticalMediaCarousel({ items }: VerticalMediaCarouselProps) {
 
   return (
     <section className="space-y-4">
-      <div className="mx-auto max-w-sm overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-        <div className="flex transition-transform duration-500 ease-out" style={{ transform: `translateX(-${index * 100}%)` }}>
+      <div className="mx-auto max-w-sm overflow-hidden rounded-lg border border-border-dark bg-surface">
+        <div
+          className="flex transition-transform duration-500"
+          style={{
+            transform: `translateX(-${index * 100}%)`,
+            transitionTimingFunction: "cubic-bezier(0.16,1,0.3,1)",
+          }}
+        >
           {items.map((item) => (
             <figure key={item.src} className="min-w-full p-3">
-              <div className="relative aspect-[9/16] overflow-hidden rounded-xl border border-neutral-200 bg-neutral-950">
+              <div className="relative aspect-[9/16] overflow-hidden rounded-lg border border-border-dark bg-black">
                 {item.type === "video" ? (
                   <video className="h-full w-full object-cover" src={item.src} autoPlay loop muted playsInline preload="metadata" />
                 ) : (
                   <Image src={item.src} alt={item.alt} fill sizes="(max-width: 640px) 100vw, 360px" className="object-cover" />
                 )}
               </div>
-              {item.caption ? <figcaption className="pt-2 text-center text-xs text-neutral-600">{item.caption}</figcaption> : null}
+              {item.caption ? (
+                <figcaption className="pt-2 text-center font-mono text-[10px] text-text-muted">
+                  {item.caption}
+                </figcaption>
+              ) : null}
             </figure>
           ))}
         </div>
@@ -37,9 +47,9 @@ export function VerticalMediaCarousel({ items }: VerticalMediaCarouselProps) {
         <button
           type="button"
           onClick={prev}
-          className="rounded-full border border-neutral-300 px-3 py-1.5 text-xs text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-900"
+          className="rounded-lg border border-border-dark px-5 py-2.5 font-mono text-xs text-text-muted transition hover:border-border-hover hover:text-text-secondary"
         >
-          Previous
+          PREV
         </button>
         {items.map((item, dotIndex) => (
           <button
@@ -47,15 +57,17 @@ export function VerticalMediaCarousel({ items }: VerticalMediaCarouselProps) {
             type="button"
             aria-label={`Show media ${dotIndex + 1}`}
             onClick={() => setIndex(dotIndex)}
-            className={`h-2.5 w-2.5 rounded-full transition ${dotIndex === index ? "bg-neutral-900" : "bg-neutral-300 hover:bg-neutral-500"}`}
+            className={`h-3 w-3 rounded-full transition ${
+              dotIndex === index ? "bg-combustion" : "bg-border-dark hover:bg-border-hover"
+            }`}
           />
         ))}
         <button
           type="button"
           onClick={next}
-          className="rounded-full border border-neutral-300 px-3 py-1.5 text-xs text-neutral-700 transition hover:border-neutral-500 hover:text-neutral-900"
+          className="rounded-lg border border-border-dark px-5 py-2.5 font-mono text-xs text-text-muted transition hover:border-border-hover hover:text-text-secondary"
         >
-          Next
+          NEXT
         </button>
       </div>
     </section>

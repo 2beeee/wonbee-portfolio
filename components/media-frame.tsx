@@ -20,7 +20,7 @@ export function MediaFrame({ media, compact = false, priority = false, className
   return (
     <figure className={`space-y-2 ${className}`}>
       <div
-        className={`relative overflow-hidden rounded-xl border border-neutral-200 bg-gradient-to-br from-neutral-100 to-white shadow-sm ${ratio}`}
+        className={`relative overflow-hidden rounded-lg border border-border-dark bg-surface-light ${ratio}`}
       >
         {media.type === "image" ? (
           <Image
@@ -33,7 +33,7 @@ export function MediaFrame({ media, compact = false, priority = false, className
           />
         ) : (
           <video
-            className="h-full w-full object-contain bg-neutral-900"
+            className="h-full w-full object-contain bg-black"
             controls={!media.autoplay}
             autoPlay={media.autoplay}
             loop={media.autoplay}
@@ -46,7 +46,9 @@ export function MediaFrame({ media, compact = false, priority = false, className
           </video>
         )}
       </div>
-      {!compact && media.caption ? <figcaption className="text-xs text-neutral-600">{media.caption}</figcaption> : null}
+      {!compact && media.caption ? (
+        <figcaption className="font-mono text-[10px] text-text-muted">{media.caption}</figcaption>
+      ) : null}
     </figure>
   );
 }

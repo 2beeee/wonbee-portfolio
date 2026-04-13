@@ -3,6 +3,8 @@ import { IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { ScrollAnimateInit } from "@/components/scroll-animate-init";
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -69,7 +71,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="font-[var(--font-sans)] text-neutral-900 antialiased">
+      <body className="font-sans text-warm-white antialiased noise-overlay">
+        <ScrollProgress />
+        <ScrollAnimateInit />
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
           <SiteHeader />
           <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">{children}</main>

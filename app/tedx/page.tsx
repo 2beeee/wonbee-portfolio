@@ -10,23 +10,24 @@ export const metadata: Metadata = {
 
 export default function TedxPage() {
   return (
-    <section className="max-w-5xl space-y-8">
+    <section className="max-w-5xl space-y-10">
       <ReturnLink href="/" label="Back to Home" />
 
-      <header className="space-y-3">
-        <h1 className="text-3xl font-semibold tracking-tight">TEDx</h1>
-        <p className="max-w-3xl leading-7 text-neutral-700">{tedxShowcase.summary}</p>
+      <header className="space-y-4">
+        <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-combustion">Public Speaking</p>
+        <h1 className="text-4xl font-bold tracking-tight text-warm-white">TEDx</h1>
+        <p className="max-w-3xl leading-7 text-text-secondary">{tedxShowcase.summary}</p>
         <a
           href={tedxShowcase.talkUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-neutral-500"
+          className="inline-flex rounded-lg border border-border-dark bg-surface-light px-6 py-3 font-mono text-sm tracking-wider text-text-secondary transition hover:border-combustion/50 hover:text-combustion"
         >
           Watch TEDx Talk (starts at 1:19:30)
         </a>
       </header>
 
-      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="scroll-animate grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tedxShowcase.media.map((item, index) => (
           <MediaFrame
             key={item.src}
@@ -37,9 +38,9 @@ export default function TedxPage() {
         ))}
       </section>
 
-      <section className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-6">
-        <h2 className="text-lg font-semibold">International Community Exchange</h2>
-        <p className="text-sm leading-6 text-neutral-700">
+      <section className="scroll-animate space-y-4 rounded-xl border border-border-dark bg-surface p-6">
+        <h2 className="text-lg font-semibold text-warm-white">International Community Exchange</h2>
+        <p className="text-sm leading-6 text-text-secondary">
           Collaboration and conversation with global rocketry communities are a meaningful part of long-term growth.
         </p>
         <MediaFrame

@@ -11,46 +11,55 @@ export const metadata: Metadata = {
 
 export default function AwardsPage() {
   return (
-    <section className="max-w-4xl space-y-8">
+    <section className="max-w-5xl space-y-10">
       <ReturnLink href="/" label="Back to Home" />
 
-      <header className="space-y-3">
-        <p className="font-[var(--font-mono)] text-xs uppercase tracking-[0.18em] text-neutral-500">
-          {awardShowcase.title}
-        </p>
-        <h1 className="text-3xl font-semibold tracking-tight">{awardShowcase.subtitle}</h1>
-        <p className="leading-7 text-neutral-700">{awardShowcase.summary}</p>
+      {/* Dramatic full-bleed header */}
+      <header className="scroll-animate relative overflow-hidden rounded-xl border border-border-dark bg-surface p-8 sm:p-12">
+        <div className="absolute inset-0 bg-gradient-to-br from-combustion/10 via-transparent to-lox/5" />
+        <div className="relative space-y-4">
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-combustion">
+            {awardShowcase.title}
+          </p>
+          <h1 className="text-4xl font-bold tracking-tight text-warm-white sm:text-5xl lg:text-6xl">
+            {awardShowcase.subtitle}
+          </h1>
+          <p className="max-w-2xl text-base leading-7 text-text-secondary">{awardShowcase.summary}</p>
+        </div>
       </header>
 
-      <section className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-6">
-        <h2 className="text-lg font-semibold">Why This Matters</h2>
-        <ul className="list-disc space-y-2 pl-5 leading-7 text-neutral-700">
+      <section className="scroll-animate space-y-4 rounded-xl border border-border-dark bg-surface p-6">
+        <h2 className="text-lg font-semibold text-warm-white">Why This Matters</h2>
+        <ul className="space-y-3">
           {awardShowcase.highlights.map((item) => (
-            <li key={item}>{item}</li>
+            <li key={item} className="flex items-start gap-3 text-text-secondary">
+              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-combustion" />
+              <span className="text-sm leading-6">{item}</span>
+            </li>
           ))}
         </ul>
       </section>
 
-      <section className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-6">
-        <h2 className="text-lg font-semibold">Award Gallery</h2>
-        <p className="text-sm leading-6 text-neutral-700">
+      <section className="scroll-animate space-y-4 rounded-xl border border-border-dark bg-surface p-6">
+        <h2 className="text-lg font-semibold text-warm-white">Award Gallery</h2>
+        <p className="text-sm leading-6 text-text-secondary">
           Curated visuals from the Humantech context, shown one at a time for clarity.
         </p>
         <ImageCarousel items={awardShowcase.media} />
       </section>
 
-      <section className="space-y-3 rounded-2xl border border-neutral-200 bg-white p-6">
-        <h2 className="text-lg font-semibold">Reference Files</h2>
+      <section className="scroll-animate space-y-4 rounded-xl border border-border-dark bg-surface p-6">
+        <h2 className="text-lg font-semibold text-warm-white">Reference Files</h2>
         <div className="flex flex-wrap gap-3">
           <a
             href={awardShowcase.paperUrl}
-            className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-neutral-500"
+            className="rounded-lg border border-border-dark bg-surface-light px-6 py-3 font-mono text-sm tracking-wider text-text-secondary transition hover:border-combustion/50 hover:text-combustion"
           >
             Open Gold Prize Paper Source (DOCX)
           </a>
           <a
             href={siteConfig.documents.vtvlReport}
-            className="rounded-full border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-neutral-500"
+            className="rounded-lg border border-border-dark bg-surface-light px-6 py-3 font-mono text-sm tracking-wider text-text-secondary transition hover:border-lox/50 hover:text-lox"
           >
             Open VTVL Report (PDF)
           </a>
