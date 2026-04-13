@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { ParticleField } from "./particle-field";
 import { TelemetryHud } from "./telemetry-hud";
 
@@ -15,6 +15,9 @@ export function Hero({ name, role, intro, positioning }: HeroProps) {
   const [revealed, setRevealed] = useState(false);
   const [roleVisible, setRoleVisible] = useState(false);
   const [roleText, setRoleText] = useState("");
+  const [videoPhase, setVideoPhase] = useState(0); // 0..1 representing position in video
+  const [videoDuration, setVideoDuration] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const t = setTimeout(() => setRevealed(true), 100);
@@ -36,6 +39,13 @@ export function Hero({ name, role, intro, positioning }: HeroProps) {
     }, name.length * 60 + 400);
     return () => clearTimeout(delay);
   }, [revealed, name, role]);
+
+  const handleTimeUpdate = useCallback(() => {
+    const video = videoRef.current;
+    if (!video || !video.duration) return;
+    setVideoPhase(video.currentTime / video.duration);
+    if (videoDuration === 0) setVideoDuration(video.duration);
+  }, [videoDuration]);
 
   const chars = name.split("");
   const contentReady = roleText.length >= role.length;
@@ -99,6 +109,7 @@ export function Hero({ name, role, intro, positioning }: HeroProps) {
           {/* Video */}
           <div className="overflow-hidden rounded-lg border border-border-dark bg-black">
             <video
+              ref={videoRef}
               className="h-full w-full object-cover"
               src="/assets/videos/rocket-70n/rocket-70n-test.mp4"
               autoPlay
@@ -106,6 +117,10 @@ export function Hero({ name, role, intro, positioning }: HeroProps) {
               muted
               playsInline
               preload="metadata"
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={() => {
+                if (videoRef.current) setVideoDuration(videoRef.current.duration);
+              }}
             />
           </div>
 
@@ -114,7 +129,7 @@ export function Hero({ name, role, intro, positioning }: HeroProps) {
             <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.16em] text-text-muted">
               Live Telemetry — 70 N GOX/Ethanol Engine
             </p>
-            <TelemetryHud />
+            <TelemetryHud videoPhase={videoPhase} videoDuration={videoDuration} />
           </div>
         </div>
       </div>
