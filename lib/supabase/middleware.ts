@@ -6,6 +6,13 @@ const PUBLIC_STUDY_ROUTES = ["/study/login", "/study/signup", "/study/auth/callb
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
 
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    const home = request.nextUrl.clone();
+    home.pathname = "/";
+    home.search = "";
+    return NextResponse.redirect(home);
+  }
+
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
