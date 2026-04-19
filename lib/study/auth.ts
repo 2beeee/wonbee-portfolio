@@ -1,13 +1,15 @@
+const DEFAULT_ALLOWED_EMAILS = ["wonbeepark@gmail.com"];
+
 export function getAllowedEmails(): string[] {
   const raw = process.env.ALLOWED_EMAILS ?? "";
-  return raw
+  const fromEnv = raw
     .split(",")
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);
+  return fromEnv.length > 0 ? fromEnv : DEFAULT_ALLOWED_EMAILS;
 }
 
 export function isEmailAllowed(email: string): boolean {
   const allowed = getAllowedEmails();
-  if (allowed.length === 0) return false;
   return allowed.includes(email.trim().toLowerCase());
 }
