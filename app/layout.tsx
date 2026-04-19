@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollAnimateInit } from "@/components/scroll-animate-init";
+import { StudyNavLink } from "@/components/study/shared/study-nav-link";
 
 const sans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -75,7 +76,7 @@ export default function RootLayout({
         <ScrollProgress />
         <ScrollAnimateInit />
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
-          <SiteHeader />
+          <SiteHeader studySlot={<StudyNavLink />} />
           <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-6 sm:py-12 lg:px-8">{children}</main>
           <SiteFooter />
         </div>

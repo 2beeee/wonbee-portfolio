@@ -13,7 +13,7 @@ const nav = [
   { href: "/contact", label: "Contact" }
 ];
 
-export function SiteHeader() {
+export function SiteHeader({ studySlot }: { studySlot?: React.ReactNode }) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -33,7 +33,7 @@ export function SiteHeader() {
         </Link>
 
         {/* Desktop nav */}
-        <nav aria-label="Primary" className="hidden sm:block">
+        <nav aria-label="Primary" className="hidden sm:flex sm:items-center sm:gap-3">
           <ul className="flex items-center gap-1.5 font-mono text-sm tracking-wider">
             {nav.map((item) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
@@ -53,6 +53,7 @@ export function SiteHeader() {
               );
             })}
           </ul>
+          {studySlot}
         </nav>
 
         {/* Mobile toggle */}
@@ -95,6 +96,7 @@ export function SiteHeader() {
               );
             })}
           </ul>
+          {studySlot && <div className="mt-3">{studySlot}</div>}
         </nav>
       )}
     </header>
