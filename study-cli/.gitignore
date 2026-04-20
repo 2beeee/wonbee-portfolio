@@ -8,5 +8,7 @@ inbox/*/*
 !inbox/*/.gitkeep
 processed/*
 !processed/.gitkeep
+# Extracted PDFs are uploaded to Supabase Storage — no need to ship via git.
+materials-extracted/
 *.log
 .DS_Store
