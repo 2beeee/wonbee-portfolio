@@ -7,9 +7,12 @@ import { listKeyPoints } from "@/lib/study/db/key-points";
 import { listConceptNotes } from "@/lib/study/db/concept-notes";
 import { listAiSessions } from "@/lib/study/db/ai-sessions";
 import { listWrongAnswers } from "@/lib/study/db/wrong-answers";
+import { listPracticeQuestions } from "@/lib/study/db/practice-questions";
+import { getLatestCliImport } from "@/lib/study/db/cli-log";
 import { SubjectHeader } from "@/components/study/subject/subject-header";
 import { SubjectProgress } from "@/components/study/subject/subject-progress";
 import { SubjectTabs } from "@/components/study/subject/subject-tabs";
+import { CliLogFooter } from "@/components/study/subject/cli-log-footer";
 
 export default async function SubjectPage({
   params
@@ -24,14 +27,17 @@ export default async function SubjectPage({
   const subject = await getSubject(supabase, id);
   if (!subject || subject.user_id !== user.id) notFound();
 
-  const [tasks, scope, keyPoints, conceptNotes, sessions, wrong] = await Promise.all([
-    listTasksBySubject(supabase, id),
-    listScopeItems(supabase, id),
-    listKeyPoints(supabase, id),
-    listConceptNotes(supabase, { subjectId: id, userId: user.id }),
-    listAiSessions(supabase, { userId: user.id, subjectId: id }),
-    listWrongAnswers(supabase, id)
-  ]);
+  const [tasks, scope, keyPoints, conceptNotes, sessions, wrong, practice, cliLog] =
+    await Promise.all([
+      listTasksBySubject(supabase, id),
+      listScopeItems(supabase, id),
+      listKeyPoints(supabase, id),
+      listConceptNotes(supabase, { subjectId: id, userId: user.id }),
+      listAiSessions(supabase, { userId: user.id, subjectId: id }),
+      listWrongAnswers(supabase, id),
+      listPracticeQuestions(supabase, id),
+      getLatestCliImport(supabase, id)
+    ]);
 
   return (
     <div className="space-y-4">
@@ -45,7 +51,9 @@ export default async function SubjectPage({
         conceptNotes={conceptNotes}
         sessions={sessions}
         wrong={wrong}
+        practice={practice}
       />
+      <CliLogFooter log={cliLog} />
     </div>
   );
 }
