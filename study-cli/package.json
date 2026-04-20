@@ -1,0 +1,24 @@
+{
+  "name": "wonbee-study-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local Opus 4.7 worker that processes PDFs/images/notes into Supabase rows via MCP.",
+  "scripts": {
+    "db:check": "tsx scripts/db-check.ts",
+    "seed:scope": "tsx scripts/seed-scope.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.103.3",
+    "dotenv": "^16.4.5",
+    "pdf-parse": "^1.1.1",
+    "sharp": "^0.33.5",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/pdf-parse": "^1.1.4",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

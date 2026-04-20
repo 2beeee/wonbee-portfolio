@@ -135,6 +135,62 @@ export interface QuickNote {
   created_at: string;
 }
 
+export type QuestionType = "short" | "multiple" | "long" | "proof";
+export type Difficulty = "easy" | "medium" | "hard";
+export type SourceMode = "cli" | "web" | "manual";
+export type PlanSlot = "morning" | "afternoon" | "evening" | "late";
+export type PlanStatus = "pending" | "done" | "skipped";
+export type ImportType = "scope" | "textbook" | "wrong" | "handout" | "session" | "plan" | "other";
+export type ImportStatus = "success" | "partial" | "failed";
+
+export interface PracticeQuestion {
+  id: string;
+  subject_id: string;
+  user_id: string;
+  topic: string | null;
+  question: string;
+  answer: string | null;
+  question_type: QuestionType;
+  difficulty: Difficulty;
+  source: string | null;
+  tags: string[];
+  times_attempted: number;
+  times_correct: number;
+  last_attempted_at: string | null;
+  source_mode: SourceMode;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface StudyPlanItem {
+  id: string;
+  user_id: string;
+  subject_id: string | null;
+  plan_date: string;
+  slot: PlanSlot;
+  duration_minutes: number;
+  title: string;
+  detail: string | null;
+  dependency_ids: string[];
+  status: PlanStatus;
+  source_mode: SourceMode;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CliImportLog {
+  id: string;
+  user_id: string;
+  subject_id: string | null;
+  file_path: string;
+  file_hash: string | null;
+  import_type: ImportType;
+  items_created: Record<string, number>;
+  status: ImportStatus;
+  error: string | null;
+  created_at: string;
+}
+
 export interface Database {
   public: {
     Tables: {
@@ -152,6 +208,9 @@ export interface Database {
         Insert: { user_id: string; import_type: string; raw_data: Json; processed?: boolean };
         Update: Partial<{ import_type: string; raw_data: Json; processed: boolean }>;
       };
+      practice_questions: { Row: PracticeQuestion; Insert: Partial<PracticeQuestion> & { user_id: string; subject_id: string; question: string }; Update: Partial<PracticeQuestion> };
+      study_plan_items: { Row: StudyPlanItem; Insert: Partial<StudyPlanItem> & { user_id: string; plan_date: string; title: string }; Update: Partial<StudyPlanItem> };
+      cli_import_log: { Row: CliImportLog; Insert: Partial<CliImportLog> & { user_id: string; file_path: string; import_type: ImportType }; Update: Partial<CliImportLog> };
     };
   };
 }
