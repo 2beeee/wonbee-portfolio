@@ -10,7 +10,11 @@ export async function listPracticeQuestions(
     .select("*")
     .eq("subject_id", subjectId)
     .order("created_at", { ascending: false });
-  if (error) throw error;
+  if (error) {
+    // Migration 0003 may not be applied yet — treat as empty instead of 500.
+    if (error.code === "42P01" || /does not exist/i.test(error.message)) return [];
+    throw error;
+  }
   return (data ?? []) as PracticeQuestion[];
 }
 

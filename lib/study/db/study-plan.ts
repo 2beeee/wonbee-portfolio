@@ -12,7 +12,10 @@ export async function listPlanForDate(
     .eq("user_id", userId)
     .eq("plan_date", date)
     .order("slot", { ascending: true });
-  if (error) throw error;
+  if (error) {
+    if (error.code === "42P01" || /does not exist/i.test(error.message)) return [];
+    throw error;
+  }
   return (data ?? []) as StudyPlanItem[];
 }
 

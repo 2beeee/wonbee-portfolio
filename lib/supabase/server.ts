@@ -31,9 +31,14 @@ export async function getSupabaseServerClient() {
 
 export async function getCurrentUser() {
   if (!isSupabaseConfigured()) return null;
-  const supabase = await getSupabaseServerClient();
-  const {
-    data: { user }
-  } = await supabase.auth.getUser();
-  return user;
+  try {
+    const supabase = await getSupabaseServerClient();
+    const {
+      data: { user }
+    } = await supabase.auth.getUser();
+    return user;
+  } catch (e) {
+    console.error("[supabase] getCurrentUser failed:", e);
+    return null;
+  }
 }

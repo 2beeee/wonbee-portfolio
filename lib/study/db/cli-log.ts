@@ -12,6 +12,9 @@ export async function getLatestCliImport(
     .order("created_at", { ascending: false })
     .limit(1)
     .maybeSingle();
-  if (error) throw error;
+  if (error) {
+    if (error.code === "42P01" || /does not exist/i.test(error.message)) return null;
+    throw error;
+  }
   return (data as CliImportLog | null) ?? null;
 }
