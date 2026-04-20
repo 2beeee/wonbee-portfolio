@@ -9,6 +9,7 @@ import { listAiSessions } from "@/lib/study/db/ai-sessions";
 import { listWrongAnswers } from "@/lib/study/db/wrong-answers";
 import { listPracticeQuestions } from "@/lib/study/db/practice-questions";
 import { getLatestCliImport } from "@/lib/study/db/cli-log";
+import { listReferenceMaterials } from "@/lib/study/db/reference-materials";
 import { SubjectHeader } from "@/components/study/subject/subject-header";
 import { SubjectProgress } from "@/components/study/subject/subject-progress";
 import { SubjectTabs } from "@/components/study/subject/subject-tabs";
@@ -27,7 +28,7 @@ export default async function SubjectPage({
   const subject = await getSubject(supabase, id);
   if (!subject || subject.user_id !== user.id) notFound();
 
-  const [tasks, scope, keyPoints, conceptNotes, sessions, wrong, practice, cliLog] =
+  const [tasks, scope, keyPoints, conceptNotes, sessions, wrong, practice, cliLog, materials] =
     await Promise.all([
       listTasksBySubject(supabase, id),
       listScopeItems(supabase, id),
@@ -36,7 +37,8 @@ export default async function SubjectPage({
       listAiSessions(supabase, { userId: user.id, subjectId: id }),
       listWrongAnswers(supabase, id),
       listPracticeQuestions(supabase, id),
-      getLatestCliImport(supabase, id)
+      getLatestCliImport(supabase, id),
+      listReferenceMaterials(supabase, id)
     ]);
 
   return (
@@ -52,6 +54,7 @@ export default async function SubjectPage({
         sessions={sessions}
         wrong={wrong}
         practice={practice}
+        materials={materials}
       />
       <CliLogFooter log={cliLog} />
     </div>

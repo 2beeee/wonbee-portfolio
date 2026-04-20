@@ -9,11 +9,13 @@ import { ConceptNotesTab } from "./concept-notes-tab";
 import { AiSessionsTab } from "./ai-sessions-tab";
 import { WrongAnswersTab } from "./wrong-answers-tab";
 import { PracticeTab } from "./practice-tab";
+import { MaterialsTab } from "./materials-tab";
 import type {
   AiSession,
   ConceptNote,
   KeyPoint,
   PracticeQuestion,
+  ReferenceMaterial,
   ScopeItem,
   Subject,
   Task,
@@ -29,6 +31,7 @@ interface Props {
   sessions: AiSession[];
   wrong: WrongAnswer[];
   practice: PracticeQuestion[];
+  materials: ReferenceMaterial[];
 }
 
 export function SubjectTabs({
@@ -39,13 +42,15 @@ export function SubjectTabs({
   conceptNotes,
   sessions,
   wrong,
-  practice
+  practice,
+  materials
 }: Props) {
   return (
     <Tabs
       tabs={[
         { key: "info", label: "시험정보", content: <ExamInfoTab subject={subject} /> },
         { key: "scope", label: "시험범위", content: <ScopeTab subjectId={subject.id} initial={scope} /> },
+        { key: "materials", label: "참고자료", content: <MaterialsTab initial={materials} /> },
         {
           key: "checklist",
           label: "체크리스트",

@@ -142,6 +142,22 @@ export type PlanSlot = "morning" | "afternoon" | "evening" | "late";
 export type PlanStatus = "pending" | "done" | "skipped";
 export type ImportType = "scope" | "textbook" | "wrong" | "handout" | "session" | "plan" | "other";
 export type ImportStatus = "success" | "partial" | "failed";
+export type ReferenceKind = "교과서" | "부교재" | "프린트" | "기타";
+
+export interface ReferenceMaterial {
+  id: string;
+  user_id: string;
+  subject_id: string;
+  title: string;
+  kind: ReferenceKind;
+  storage_path: string;
+  page_label: string | null;
+  source_file_name: string | null;
+  file_size: number | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+}
 
 export interface PracticeQuestion {
   id: string;
@@ -211,6 +227,7 @@ export interface Database {
       practice_questions: { Row: PracticeQuestion; Insert: Partial<PracticeQuestion> & { user_id: string; subject_id: string; question: string }; Update: Partial<PracticeQuestion> };
       study_plan_items: { Row: StudyPlanItem; Insert: Partial<StudyPlanItem> & { user_id: string; plan_date: string; title: string }; Update: Partial<StudyPlanItem> };
       cli_import_log: { Row: CliImportLog; Insert: Partial<CliImportLog> & { user_id: string; file_path: string; import_type: ImportType }; Update: Partial<CliImportLog> };
+      reference_materials: { Row: ReferenceMaterial; Insert: Partial<ReferenceMaterial> & { user_id: string; subject_id: string; title: string; kind: ReferenceKind; storage_path: string }; Update: Partial<ReferenceMaterial> };
     };
   };
 }

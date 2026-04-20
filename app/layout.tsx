@@ -72,7 +72,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
-      <body className="font-sans text-warm-white antialiased noise-overlay">
+      <body className="font-sans text-warm-white antialiased noise-overlay" suppressHydrationWarning>
         <ScrollProgress />
         <ScrollAnimateInit />
         <div className="relative flex min-h-screen flex-col overflow-x-hidden">
