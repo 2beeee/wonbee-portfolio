@@ -5,17 +5,21 @@ export async function listPracticeQuestions(
   supabase: Client,
   subjectId: string
 ): Promise<PracticeQuestion[]> {
-  const { data, error } = await supabase
-    .from("practice_questions")
-    .select("*")
-    .eq("subject_id", subjectId)
-    .order("created_at", { ascending: false });
-  if (error) {
-    // Migration 0003 may not be applied yet — treat as empty instead of 500.
-    if (error.code === "42P01" || /does not exist/i.test(error.message)) return [];
-    throw error;
+  try {
+    const { data, error } = await supabase
+      .from("practice_questions")
+      .select("*")
+      .eq("subject_id", subjectId)
+      .order("created_at", { ascending: false });
+    if (error) {
+      console.warn("[practice_questions] list failed, returning empty:", error.message);
+      return [];
+    }
+    return (data ?? []) as PracticeQuestion[];
+  } catch (e) {
+    console.warn("[practice_questions] list threw, returning empty:", (e as Error).message);
+    return [];
   }
-  return (data ?? []) as PracticeQuestion[];
 }
 
 export async function recordAttempt(

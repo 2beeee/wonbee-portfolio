@@ -6,17 +6,22 @@ export async function listPlanForDate(
   userId: string,
   date: string
 ): Promise<StudyPlanItem[]> {
-  const { data, error } = await supabase
-    .from("study_plan_items")
-    .select("*")
-    .eq("user_id", userId)
-    .eq("plan_date", date)
-    .order("slot", { ascending: true });
-  if (error) {
-    if (error.code === "42P01" || /does not exist/i.test(error.message)) return [];
-    throw error;
+  try {
+    const { data, error } = await supabase
+      .from("study_plan_items")
+      .select("*")
+      .eq("user_id", userId)
+      .eq("plan_date", date)
+      .order("slot", { ascending: true });
+    if (error) {
+      console.warn("[study_plan_items] list failed, returning empty:", error.message);
+      return [];
+    }
+    return (data ?? []) as StudyPlanItem[];
+  } catch (e) {
+    console.warn("[study_plan_items] list threw, returning empty:", (e as Error).message);
+    return [];
   }
-  return (data ?? []) as StudyPlanItem[];
 }
 
 export async function setPlanStatus(
