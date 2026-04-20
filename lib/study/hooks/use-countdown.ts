@@ -1,5 +1,6 @@
 "use client";
 
+import { differenceInCalendarDays } from "date-fns";
 import { useEffect, useState } from "react";
 
 export interface CountdownParts {
@@ -12,14 +13,17 @@ export interface CountdownParts {
 }
 
 function computeParts(target: Date): CountdownParts {
-  const now = Date.now();
+  const nowDate = new Date();
+  const now = nowDate.getTime();
   const totalMs = target.getTime() - now;
   const abs = Math.abs(totalMs);
-  const days = Math.floor(abs / (1000 * 60 * 60 * 24));
+  // "D-N" counts calendar days between today and the exam date, matching the
+  // Korean school convention (4/20 → 4/22 is always D-2, regardless of time).
+  const calendarDays = Math.abs(differenceInCalendarDays(target, nowDate));
   const hours = Math.floor((abs / (1000 * 60 * 60)) % 24);
   const minutes = Math.floor((abs / (1000 * 60)) % 60);
   const seconds = Math.floor((abs / 1000) % 60);
-  return { totalMs, days, hours, minutes, seconds, isPast: totalMs <= 0 };
+  return { totalMs, days: calendarDays, hours, minutes, seconds, isPast: totalMs <= 0 };
 }
 
 export function useCountdown(target: Date | null): CountdownParts | null {
