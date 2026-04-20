@@ -1,5 +1,13 @@
-import "dotenv/config";
+import { config as loadEnv } from "dotenv";
+import { fileURLToPath } from "node:url";
+import { dirname, resolve } from "node:path";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+// Load .env.local first (primary), then .env as fallback. Values already set in
+// process.env (e.g. from the shell) always win.
+loadEnv({ path: resolve(__dirname, "..", ".env.local") });
+loadEnv({ path: resolve(__dirname, "..", ".env") });
 
 let cached: SupabaseClient | null = null;
 
