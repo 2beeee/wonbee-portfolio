@@ -8,10 +8,12 @@ import { KeyPointsTab } from "./key-points-tab";
 import { ConceptNotesTab } from "./concept-notes-tab";
 import { AiSessionsTab } from "./ai-sessions-tab";
 import { WrongAnswersTab } from "./wrong-answers-tab";
+import { PracticeTab } from "./practice-tab";
 import type {
   AiSession,
   ConceptNote,
   KeyPoint,
+  PracticeQuestion,
   ScopeItem,
   Subject,
   Task,
@@ -26,6 +28,7 @@ interface Props {
   conceptNotes: ConceptNote[];
   sessions: AiSession[];
   wrong: WrongAnswer[];
+  practice: PracticeQuestion[];
 }
 
 export function SubjectTabs({
@@ -35,7 +38,8 @@ export function SubjectTabs({
   keyPoints,
   conceptNotes,
   sessions,
-  wrong
+  wrong,
+  practice
 }: Props) {
   return (
     <Tabs
@@ -66,6 +70,11 @@ export function SubjectTabs({
           key: "wrong",
           label: "오답노트",
           content: <WrongAnswersTab subjectId={subject.id} initial={wrong} />
+        },
+        {
+          key: "practice",
+          label: "연습문제",
+          content: <PracticeTab subjectId={subject.id} initial={practice} />
         }
       ]}
     />

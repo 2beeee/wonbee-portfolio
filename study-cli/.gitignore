@@ -1,0 +1,11 @@
+node_modules/
+.env.local
+.env
+# Ignore anything a user drops into inbox/ or processed/, but keep the
+# folder skeleton so git clone still has the directory layout.
+inbox/*/*
+!inbox/*/.gitkeep
+processed/*
+!processed/.gitkeep
+*.log
+.DS_Store

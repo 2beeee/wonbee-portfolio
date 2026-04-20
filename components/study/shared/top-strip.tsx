@@ -63,6 +63,12 @@ export function StudyTopStrip({
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-text-muted sm:inline">
             {email}
           </span>
+          <Link
+            href="/study/settings"
+            className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-muted transition hover:text-warm-white"
+          >
+            Settings
+          </Link>
           <LogoutButton />
         </div>
       </div>
