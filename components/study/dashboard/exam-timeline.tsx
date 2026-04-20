@@ -70,7 +70,7 @@ export function ExamTimeline({
         )}
       </div>
 
-      <ol className="space-y-3">
+      <div className="flex snap-x snap-mandatory gap-3 overflow-x-auto pb-2 lg:snap-none">
         {groups.map((g) => {
           const dt = g.subjects.find((s) => s.exam_date)
             ? nextExamDateTime(g.subjects[0])
@@ -80,42 +80,45 @@ export function ExamTimeline({
           const isPast = d !== null && d < 0;
 
           return (
-            <li key={g.key}>
-              <div className="rounded-xl border border-border-dark bg-surface p-4">
-                <button
-                  type="button"
-                  disabled={!g.isoDate}
-                  onClick={() =>
-                    onSelectDate?.(isSelected ? null : g.isoDate || null)
-                  }
-                  className={cn(
-                    "flex w-full items-baseline justify-between gap-3 text-left",
-                    g.isoDate && "cursor-pointer hover:text-warm-white"
-                  )}
-                >
-                  <div className="flex items-baseline gap-3">
+            <div
+              key={g.key}
+              className={cn(
+                "flex min-w-[210px] flex-1 shrink-0 snap-start flex-col overflow-hidden rounded-xl border bg-surface transition",
+                isSelected
+                  ? "border-combustion/60 ring-1 ring-combustion/40"
+                  : "border-border-dark"
+              )}
+            >
+              <button
+                type="button"
+                disabled={!g.isoDate}
+                onClick={() =>
+                  onSelectDate?.(isSelected ? null : g.isoDate || null)
+                }
+                className={cn(
+                  "flex flex-col gap-1 border-b border-border-dark px-3 py-2 text-left",
+                  g.isoDate && "cursor-pointer hover:bg-white/5"
+                )}
+              >
+                <div className="flex items-baseline justify-between gap-2">
+                  <div className="flex items-baseline gap-2">
                     {g.isoDate ? (
                       <>
                         <span className="font-mono text-base text-warm-white">
                           {g.date.getMonth() + 1}/{g.date.getDate()}
                         </span>
-                        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">
-                          ({dow[g.date.getDay()]})
+                        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-muted">
+                          {dow[g.date.getDay()]}
                         </span>
                       </>
                     ) : (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-muted">
-                        시험 일정 미정
-                      </span>
-                    )}
-                    {isSelected && (
-                      <span className="font-mono text-[10px] uppercase tracking-wider text-combustion">
-                        · filtering
+                      <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-text-muted">
+                        일정 미정
                       </span>
                     )}
                   </div>
                   {d !== null && !isPast && (
-                    <span className="hud-value font-mono text-lg text-combustion">
+                    <span className="hud-value font-mono text-sm text-combustion">
                       {formatDday(d)}
                     </span>
                   )}
@@ -124,69 +127,67 @@ export function ExamTimeline({
                       완료
                     </span>
                   )}
-                </button>
-
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  {g.subjects.map((s) => {
-                    const subjTasks = tasks.filter((t) => t.subject_id === s.id);
-                    const total = subjTasks.length;
-                    const done = subjTasks.filter((t) => t.completed).length;
-                    const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-                    const focus = [...subjTasks]
-                      .filter((t) => !t.completed)
-                      .sort(
-                        (a, b) => a.priority - b.priority || a.order - b.order
-                      )[0];
-                    return (
-                      <Link
-                        key={s.id}
-                        href={`/study/subjects/${s.id}`}
-                        className="card-glow group relative flex flex-col gap-2 rounded-lg border border-border-dark bg-base-black/40 p-3"
-                      >
-                        <div
-                          className="absolute left-0 top-0 h-full w-0.5"
-                          style={{ background: s.color }}
-                        />
-                        <div className="flex items-baseline justify-between gap-2">
-                          <p className="text-sm font-medium tracking-wide text-warm-white">
-                            {s.name}
-                          </p>
-                          <p className="font-mono text-[10px] uppercase tracking-wider text-text-muted">
-                            {s.exam_period ?? ""}
-                            {s.exam_start_time ? ` · ${s.exam_start_time.slice(0, 5)}` : ""}
-                          </p>
-                        </div>
-                        <div>
-                          <div className="flex items-center justify-between font-mono text-[10px] text-text-muted">
-                            <span>PROGRESS</span>
-                            <span className="hud-value">
-                              {done}/{total} · {pct}%
-                            </span>
-                          </div>
-                          <div className="mt-1 h-1 overflow-hidden rounded-full bg-border-dark">
-                            <div
-                              className="h-full rounded-full transition-[width] duration-500"
-                              style={{ width: `${pct}%`, background: s.color }}
-                            />
-                          </div>
-                        </div>
-                        {focus && (
-                          <p className="truncate rounded-full border border-border-dark bg-base-black/60 px-3 py-1 text-xs text-text-secondary">
-                            <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-muted">
-                              Focus ·{" "}
-                            </span>
-                            {focus.title}
-                          </p>
-                        )}
-                      </Link>
-                    );
-                  })}
                 </div>
+                {isSelected && (
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-combustion">
+                    · filtering focus list
+                  </span>
+                )}
+              </button>
+
+              <div className="flex flex-1 flex-col gap-2 p-2">
+                {g.subjects.map((s) => {
+                  const subjTasks = tasks.filter((t) => t.subject_id === s.id);
+                  const total = subjTasks.length;
+                  const done = subjTasks.filter((t) => t.completed).length;
+                  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+                  const focus = [...subjTasks]
+                    .filter((t) => !t.completed)
+                    .sort(
+                      (a, b) => a.priority - b.priority || a.order - b.order
+                    )[0];
+                  return (
+                    <Link
+                      key={s.id}
+                      href={`/study/subjects/${s.id}`}
+                      className="card-glow group relative flex flex-col gap-1.5 rounded-lg border border-border-dark bg-base-black/40 p-2.5"
+                    >
+                      <div
+                        className="absolute left-0 top-0 h-full w-0.5"
+                        style={{ background: s.color }}
+                      />
+                      <p className="pl-1.5 text-sm font-medium leading-tight tracking-wide text-warm-white">
+                        {s.name}
+                      </p>
+                      <p className="pl-1.5 font-mono text-[10px] uppercase tracking-wider text-text-muted">
+                        {s.exam_period ?? ""}
+                        {s.exam_start_time ? ` · ${s.exam_start_time.slice(0, 5)}` : ""}
+                      </p>
+                      <div className="pl-1.5">
+                        <div className="flex items-center justify-between font-mono text-[9px] text-text-muted">
+                          <span>{done}/{total}</span>
+                          <span className="hud-value">{pct}%</span>
+                        </div>
+                        <div className="mt-1 h-0.5 overflow-hidden rounded-full bg-border-dark">
+                          <div
+                            className="h-full rounded-full transition-[width] duration-500"
+                            style={{ width: `${pct}%`, background: s.color }}
+                          />
+                        </div>
+                      </div>
+                      {focus && (
+                        <p className="truncate pl-1.5 text-[11px] leading-snug text-text-secondary">
+                          → {focus.title}
+                        </p>
+                      )}
+                    </Link>
+                  );
+                })}
               </div>
-            </li>
+            </div>
           );
         })}
-      </ol>
+      </div>
     </section>
   );
 }
