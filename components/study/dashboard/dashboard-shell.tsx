@@ -7,6 +7,7 @@ import { SubjectGrid } from "./subject-grid";
 import { OverallProgress } from "./overall-progress";
 import { FocusList } from "./focus-list";
 import { RecentSessions } from "./recent-sessions";
+import { EmptyInitialize } from "./empty-initialize";
 import type { AiSession, Subject, Task } from "@/types/study-db";
 
 interface Props {
@@ -23,6 +24,7 @@ export function DashboardShell({ userId, subjects, tasks, sessions, nextExam }: 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   return (
     <div className="space-y-6">
+      {subjects.length === 0 ? <EmptyInitialize /> : null}
       <PrimaryCountdown nextExam={nextExam} />
       <div className="grid gap-4 lg:grid-cols-3">
         <div className="lg:col-span-2">

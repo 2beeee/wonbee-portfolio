@@ -19,7 +19,11 @@ export default async function ProtectedStudyLayout({
   if (!user) redirect("/study/login");
 
   const supabase = await getSupabaseServerClient();
-  await provisionUserIfNeeded(supabase, user.id);
+  try {
+    await provisionUserIfNeeded(supabase, user.id);
+  } catch (e) {
+    console.error("[study-hub] auto-provision failed:", e);
+  }
   const subjects = await listSubjects(supabase, user.id);
 
   const now = Date.now();
