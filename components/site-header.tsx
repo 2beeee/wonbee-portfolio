@@ -10,6 +10,7 @@ const nav = [
   { href: "/projects", label: "Liquid Propulsion" },
   { href: "/skills", label: "Skills" },
   { href: "/recap", label: "Recap" },
+  { href: "/study/midterm", label: "Study" },
   { href: "/contact", label: "Contact" }
 ];
 
