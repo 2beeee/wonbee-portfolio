@@ -1,10 +1,35 @@
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const PUBLIC_STUDY_ROUTES = ["/study/login", "/study/signup", "/study/auth/callback"];
+const PUBLIC_STUDY_ROUTES = [
+  "/study/login",
+  "/study/signup",
+  "/study/auth/callback",
+  "/study/literature",
+  "/study/literature-omx",
+  "/study/earth-science",
+  "/study/earth-science-omx",
+  "/study/midterm"
+];
+const UNAUTH_ONLY_STUDY_ROUTES = ["/study/login", "/study/signup"];
+const NO_AUTH_NEEDED_STUDY_ROUTES = [
+  "/study/literature",
+  "/study/literature-omx",
+  "/study/earth-science",
+  "/study/earth-science-omx",
+  "/study/midterm"
+];
 
 export async function updateSession(request: NextRequest) {
   let response = NextResponse.next({ request });
+
+  const { pathname: earlyPath } = request.nextUrl;
+  const isNoAuthRoute = NO_AUTH_NEEDED_STUDY_ROUTES.some(
+    (p) => earlyPath === p || earlyPath.startsWith(`${p}/`)
+  );
+  if (isNoAuthRoute) {
+    return response;
+  }
 
   if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
     const home = request.nextUrl.clone();
@@ -49,7 +74,11 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(loginUrl);
   }
 
-  if (isPublicStudy && user) {
+  const isUnauthOnly = UNAUTH_ONLY_STUDY_ROUTES.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`)
+  );
+
+  if (isUnauthOnly && user) {
     const dash = request.nextUrl.clone();
     dash.pathname = "/study";
     dash.search = "";

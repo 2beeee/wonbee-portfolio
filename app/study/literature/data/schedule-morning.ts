@@ -1,0 +1,63 @@
+import { Block } from "./schedule-night";
+
+export const MORNING_BLOCKS: Block[] = [
+  {
+    id: "M-01",
+    startMin: 0,
+    durationMin: 3,
+    title: "🌅 모닝 부팅 — 마음 정돈",
+    desc: "심호흡 3번. 시험 시작 08:20. 이 30분은 '리마인드'에 집중.",
+    type: "warmup",
+  },
+  {
+    id: "M-02",
+    startMin: 3,
+    durationMin: 5,
+    title: "TIER S 1순위 리마인드 — 자경 + 도산십이곡",
+    desc: "자경 = 박인로·연시조·수신제가. 도산십이곡 = 전6곡 言志 / 후6곡 言學 / 만고상청.",
+    workIds: ["S-01", "S-02"],
+    type: "tier-s",
+  },
+  {
+    id: "M-03",
+    startMin: 8,
+    durationMin: 5,
+    title: "TIER S 2순위 리마인드 — 만복사·흥보가·무진기행",
+    desc: "금오신화·전기소설 / 판소리 5장단 / 1인칭 주인공·안개=체념.",
+    workIds: ["S-03", "S-04", "S-05"],
+    type: "tier-s",
+  },
+  {
+    id: "M-04",
+    startMin: 13,
+    durationMin: 7,
+    title: "📌 핀 처리한 작품·시어 다시 보기",
+    desc: "어젯밤 헷갈렸던 카드 우선. 핀 보드 비우기.",
+    type: "review",
+  },
+  {
+    id: "M-05",
+    startMin: 20,
+    durationMin: 5,
+    title: "유형북 — 함정 패턴만 빠르게",
+    desc: "역설 vs 반어, 단정적 표현 의심, 〈보기〉 벗어난 해석 ✗.",
+    patternIds: ["P-03", "P-01", "P-04"],
+    type: "pattern",
+  },
+  {
+    id: "M-06",
+    startMin: 25,
+    durationMin: 3,
+    title: "🎯 시험 직전 30초 체크리스트",
+    desc: "1.갈래 헷갈리지 마 2.꽃-낙화 비교 3.작가 맥락 키워드 4.수사법 정확히 5.함정 단어 (단정/오로지/항상)",
+    type: "review",
+  },
+  {
+    id: "M-07",
+    startMin: 28,
+    durationMin: 2,
+    title: "🚀 출발 — 그동안 한 게 있다, 믿고 가자",
+    desc: "수고했어. 너는 준비됐어.",
+    type: "warmup",
+  },
+];
