@@ -1,8 +1,12 @@
 "use client";
 
+import "katex/dist/katex.min.css";
+
 import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 type Note = {
   slug: string;
@@ -126,7 +130,8 @@ function MarkdownBody({ content }: { content: string }) {
   return (
     <div className="algebra-md font-sans text-warm-white/90">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
         components={{
           h1: (props) => (
             <h1

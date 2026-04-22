@@ -1,9 +1,14 @@
 "use client";
 
+import "katex/dist/katex.min.css";
+import "katex/contrib/mhchem";
+
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import rehypeKatex from "rehype-katex";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 type Priority = "S" | "A" | "B" | "C";
 
@@ -28,15 +33,14 @@ const PRIORITY_STYLE: Record<Priority, string> = {
   C: "text-[#888] border-[#333] bg-[#111]"
 };
 
-export function ChemistryHub({ notes }: { notes: Note[] }) {
-  const initial = useMemo(() => {
-    if (typeof window === "undefined") return notes[0]?.slug ?? "overview";
-    const h = new URLSearchParams(window.location.search).get("tab");
-    if (h && notes.some((n) => n.slug === h)) return h;
-    return notes[0]?.slug ?? "overview";
-  }, [notes]);
-
-  const [active, setActive] = useState<string>(initial);
+export function ChemistryHub({
+  notes,
+  initialSlug
+}: {
+  notes: Note[];
+  initialSlug: string;
+}) {
+  const [active, setActive] = useState<string>(initialSlug);
   const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -252,7 +256,8 @@ function MarkdownBody({ content }: { content: string }) {
   return (
     <div className="chemistry-md font-sans text-warm-white/90">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkMath]}
+        rehypePlugins={[rehypeKatex]}
         components={{
           h1: (props) => (
             <h1

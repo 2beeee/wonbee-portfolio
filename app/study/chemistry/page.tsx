@@ -99,7 +99,11 @@ function stripFrontmatter(md: string): string {
   return md.slice(end + 4).replace(/^\s*\n/, "");
 }
 
-export default async function ChemistryCramPage() {
+export default async function ChemistryCramPage({
+  searchParams
+}: {
+  searchParams: Promise<{ tab?: string }>;
+}) {
   const notesDir = path.join(process.cwd(), "app", "study", "chemistry", "notes");
 
   const notes = await Promise.all(
@@ -109,9 +113,13 @@ export default async function ChemistryCramPage() {
     })
   );
 
+  const { tab } = await searchParams;
+  const initialSlug =
+    tab && notes.some((n) => n.slug === tab) ? tab : notes[0].slug;
+
   return (
     <main className="mx-auto max-w-5xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
-      <ChemistryHub notes={notes} />
+      <ChemistryHub notes={notes} initialSlug={initialSlug} />
     </main>
   );
 }
