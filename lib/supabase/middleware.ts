@@ -9,6 +9,8 @@ const PUBLIC_STUDY_ROUTES = [
   "/study/literature-omx",
   "/study/earth-science",
   "/study/earth-science-omx",
+  "/study/algebra",
+  "/study/chemistry",
   "/study/midterm"
 ];
 const UNAUTH_ONLY_STUDY_ROUTES = ["/study/login", "/study/signup"];
@@ -17,6 +19,8 @@ const NO_AUTH_NEEDED_STUDY_ROUTES = [
   "/study/literature-omx",
   "/study/earth-science",
   "/study/earth-science-omx",
+  "/study/algebra",
+  "/study/chemistry",
   "/study/midterm"
 ];
 

@@ -7,8 +7,8 @@ type Mode = "night" | "morning";
 
 type Card = {
   href: string;
-  subject: "문학" | "지구과학";
-  builder: "OMC" | "OMX";
+  subject: "문학" | "지구과학" | "대수" | "화학";
+  builder: "OMC" | "OMX" | "OPUS" | "CRAM";
   tag: string;
   accent: string;
   summary: string;
@@ -46,6 +46,22 @@ const CARDS: Card[] = [
     tag: "EARTH · OMX",
     accent: "#7DE3FF",
     summary: "타임라인 · S/A 우선 · 그래프 인터랙션"
+  },
+  {
+    href: "/study/algebra",
+    subject: "대수",
+    builder: "OPUS",
+    tag: "ALGEBRA · OPUS",
+    accent: "#FF6B2B",
+    summary: "개념 · 15유형 플레이북 · 드릴 20題 · 5h 스프린트"
+  },
+  {
+    href: "/study/chemistry",
+    subject: "화학",
+    builder: "CRAM",
+    tag: "CHEM · CRAM",
+    accent: "#00D4FF",
+    summary: "4/23(목) 2교시 · 몰 · VSEPR · 분자극성 · 12유형 · 36문제"
   }
 ];
 
@@ -105,9 +121,9 @@ export function MidtermHub() {
           </h1>
 
           <p className="text-sm text-[#888] max-w-2xl leading-relaxed">
-            4월 22일(수) 1교시 문학(08:20~09:10) · 2교시 지구과학(09:30~10:20).
+            4/22(수) 1교시 문학 · 2교시 지구과학 · 4/23(목) 2교시 화학(09:30~10:20).
             <br />
-            OMC/OMX 빌더가 각각 만든 4개의 학습 머신을 한 곳에서.
+            OMC/OMX/OPUS/CRAM 빌더가 만든 5개의 학습 머신.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 pt-2">
@@ -206,6 +222,7 @@ export function MidtermHub() {
             <li>· 〈보기〉 벗어난 해석 금지.</li>
             <li>· 함정 단어: 단정/오로지/항상.</li>
             <li>· 지구과학은 그래프 축 + 단위 먼저.</li>
+            <li>· 화학은 계수비 ≠ 질량비 · Cl(3.2) &gt; N(3.0) · CO₂는 무극성.</li>
           </ul>
         </div>
 
