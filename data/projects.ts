@@ -80,6 +80,12 @@ export const projects: Project[] = [
       "Lander constraints mapped to test sequence requirements"
     ],
     sourceMaterial: ["Presentation.pptx (used as source)", "kimchi project pic1.png", "kimchi project pic2.png"],
+    links: [
+      {
+        label: "View Full Critical Design Review (PDF)",
+        href: "/documents/kimchi-engine-critical-design-review"
+      }
+    ],
     media: [
       {
         type: "image",
