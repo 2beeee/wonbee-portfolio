@@ -197,7 +197,12 @@ export const projects: Project[] = [
       "Hover and control trials in low-altitude conditions"
     ],
     sourceMaterial: ["1st-year autonomous VTVL report PDF"],
-    links: [{ label: "Read VTVL Reference Report (PDF)", href: "/assets/docs/vtvl-reference-report.pdf" }],
+    links: [
+      {
+        label: "View Full VTVL Research Report (PDF)",
+        href: "/documents/vtvl-autonomous-research-report"
+      }
+    ],
     featured: true
   },
   {

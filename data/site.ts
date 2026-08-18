@@ -22,7 +22,7 @@ export const siteConfig = {
     resumePdf: ""
   },
   documents: {
-    vtvlReport: "/assets/docs/vtvl-reference-report.pdf",
+    vtvlReport: "/documents/vtvl-autonomous-research-report",
     humantechPaper: "/assets/docs/samsung-humantech-gold-paper.docx"
   },
   contact: {
