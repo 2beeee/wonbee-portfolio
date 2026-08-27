@@ -46,7 +46,7 @@ export const projectCategories: ProjectCategory[] = [
   {
     id: "liquid-propulsion-core",
     title: "Core Programs",
-    summary: "Primary propulsion build efforts including Kimchi and the 70 N-class development milestone."
+    summary: "Primary propulsion build efforts including the Race2Space campaign, Kimchi, and the 70 N-class development milestone."
   },
   {
     id: "liquid-propulsion-related",
@@ -56,6 +56,52 @@ export const projectCategories: ProjectCategory[] = [
 ];
 
 export const projects: Project[] = [
+  {
+    slug: "race2space-2026-engineering-campaign",
+    title: "Race2Space 2026 Engineering Campaign",
+    categoryId: "liquid-propulsion-core",
+    summary:
+      "A photo-led record of the LOX/IPA Kimchi Engine campaign, from design review and manufacturing to eight test iterations in the United Kingdom.",
+    yearOrStatus: "2026",
+    tags: ["LOX/IPA", "Race2Space", "Hot-Fire", "1.3 kN Class"],
+    role: "Team lead, initial PDR concept design, manufacturing and test coordination, field integration, and data analysis",
+    challenge:
+      "Move a student-built regenerative engine from design reviews into safe operation at a professional test facility while closing manufacturing, controls, and interface constraints.",
+    approach:
+      "Used staged design reviews, additive manufacturing, water-flow and hydrostatic checks, domestic readiness testing, and evidence-led iteration between eight facility tests.",
+    result:
+      "Test 8 produced sustained chamber-pressure response and a stable analysis window with 1194 ± 33 N measured thrust.",
+    progression:
+      "Connects early liquid-propulsion development to a complete international design-build-test campaign with documented operational learning.",
+    milestones: [
+      "PDR and CDR design-review gates",
+      "Two-part Inconel 718 regenerative engine",
+      "Eight facility test iterations",
+      "Test 8 stable window and post-campaign data analysis"
+    ],
+    links: [
+      {
+        label: "Open the complete campaign album",
+        href: "/projects/race2space-2026-engineering-campaign"
+      },
+      {
+        label: "Review Tests 1–8",
+        href: "/documents/race2space-2026-hot-fire-test-analysis"
+      }
+    ],
+    media: [
+      {
+        type: "image",
+        src: "/assets/race2space-2026/images/39-campaign-image.webp",
+        alt: "Kimchi Engine producing a sustained exhaust plume during Race2Space Test 8.",
+        width: 3833,
+        height: 2159,
+        orientation: "landscape",
+        caption: "Sustained Test 8 hot-fire."
+      }
+    ],
+    featured: true
+  },
   {
     slug: "kimchi-2-5kn-lander-program",
     title: "Kimchi Project: 2.5 kN LOX/Ethanol Lander Program",

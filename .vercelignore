@@ -1,4 +1,7 @@
 /study-cli
 /supabase
+/.claude
+/.env*
+/tsconfig.tsbuildinfo
 /README-STUDY-CLI.md
 /STUDY_HUB_SETUP.md

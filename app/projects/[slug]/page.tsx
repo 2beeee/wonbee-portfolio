@@ -29,7 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => project.slug !== "race2space-2026-engineering-campaign")
+    .map((project) => ({ slug: project.slug }));
 }
 
 export default async function ProjectDetailPage({ params }: PageProps) {

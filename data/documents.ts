@@ -15,6 +15,36 @@ export type PortfolioDocument = {
 
 export const documents: PortfolioDocument[] = [
   {
+    slug: "race2space-2026-engineering-campaign-report",
+    title: "Race2Space 2026 Engineering Campaign Report",
+    description:
+      "The concise PDF edition of the Kimchi Engine campaign, tracing design evolution, manufacturing, domestic preparation, UK integration, and the sustained Test 8 result.",
+    eyebrow: "Engineering Campaign - Race2Space 2026",
+    documentType: "Engineering Campaign Report",
+    author: "Wonbee Park",
+    pageCount: 11,
+    fileSize: "3.84 MiB",
+    pdfPath: "/assets/docs/race2space-2026-engineering-campaign-report.pdf",
+    downloadName: "race2space-2026-engineering-campaign-report.pdf",
+    backHref: "/projects/race2space-2026-engineering-campaign",
+    backLabel: "Back to Campaign Album"
+  },
+  {
+    slug: "race2space-2026-hot-fire-test-analysis",
+    title: "Race2Space Tests 1–8: Hot-Fire Analysis",
+    description:
+      "A data-led comparison of all eight Race2Space test iterations, including event timing, pressure and flow response, failure progression, and the stable Test 8 analysis window.",
+    eyebrow: "Test Analysis - Race2Space 2026",
+    documentType: "Hot-Fire Test Analysis",
+    author: "Wonbee Park",
+    pageCount: 14,
+    fileSize: "1.55 MiB",
+    pdfPath: "/assets/docs/race2space-2026-hot-fire-test-analysis.pdf",
+    downloadName: "race2space-2026-hot-fire-test-analysis.pdf",
+    backHref: "/projects/race2space-2026-engineering-campaign",
+    backLabel: "Back to Campaign Album"
+  },
+  {
     slug: "kimchi-engine-critical-design-review",
     title: "Kimchi Engine Critical Design Review",
     description:
